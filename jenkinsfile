@@ -42,7 +42,7 @@ pipeline {
                            percentile90ResponseTimeFailedThreshold: 1500,
                            percentile90ResponseTimeUnstableThreshold: 1200,
                            failBuild: true
-                }
+                }               
         }
 
         stage('Publish HTML Report') {
