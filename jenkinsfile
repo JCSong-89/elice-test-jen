@@ -15,16 +15,6 @@ pipeline {
     }
 
     stages {
-
-        stage('Prepare Test Plan') {
-            steps {
-                script {
-                    sh "if [ ! -f \"${TEST_PLAN_WORKSPACE_PATH}\" ]; then echo \"테스트 계획 파일이 작업 공간에 없습니다. JMeter bin 디렉토리에서 복사합니다.\"; cp \"${TEST_PLAN_JMETER_BIN_PATH}\" \"${TEST_PLAN_WORKSPACE_PATH}\"; else echo \"테스트 계획 파일이 작업 공간에 있습니다.\"; fi"
-                    sh "ls -l \"${TEST_PLAN_WORKSPACE_PATH}\"" // 복사 후 확인
-                }
-            }
-        }
-
         stage('Run Tests') {
             steps {
                 script{                    

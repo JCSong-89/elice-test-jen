@@ -1,5 +1,3 @@
-version: "3.8"
-
 services:
   jenkins:
     build:
@@ -16,6 +14,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - /usr/bin/docker:/usr/bin/docker
       - C:/Users/kal84/Downloads/apache-jmeter-5.6.3:/opt/jmeter  # 이 줄을 추가하세요!
+   
     user: root
 volumes:
   jenkins_home:
