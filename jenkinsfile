@@ -32,8 +32,8 @@ pipeline {
         stage('Performance Report') {
             steps {
                 performancePublisher(
-                    errorFailedThresholds: [percentage(0.0)], // 에러율 실패 임계값 (0%)
-                    errorUnstableThresholds: [percentage(5.0)], // 에러율 불안정 임계값 (5%)
+                    errorFailedThresholds: [0.0)], // 에러율 실패 임계값 (0%)
+                    errorUnstableThresholds: [5.0], // 에러율 불안정 임계값 (5%)
                     sourceDataFiles: "${JTL_REPORT_FILE}", // 분석할 결과 파일 경로
                     reportDir: "${PERFORMANCE_REPORT_DIR}" // 생성될 보고서 디렉토리
                 )
