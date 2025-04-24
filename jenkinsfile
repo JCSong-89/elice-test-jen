@@ -12,7 +12,8 @@ pipeline {
     stages {
         stage('Run Tests') {
             steps {
-                script{
+                script{                    
+                    sh 'pwd'
                     sh 'rm -f results.jtl'
                     sh 'rm -rf report_output' // reports -> report_output으로 수정 (로그 참조)
                     sh 'mkdir -p results'       // 결과 파일 저장 디렉토리 생성
