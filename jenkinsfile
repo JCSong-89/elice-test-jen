@@ -14,7 +14,8 @@ pipeline {
     stages {
         stage('Run Tests') {
             steps {
-                script{       
+                script{    
+                    sh "pwd"   
                     sh "rm -rf ${env.JMETER_HOME}/results" 
                     sh "rm -rf ${HTML_REPORT_DIR}"         
                     sh "mkdir ${env.JMETER_HOME}/results" 
