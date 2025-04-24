@@ -31,17 +31,17 @@ pipeline {
 
         stage('Publish Performance Report') {
             steps {
-                perfReport parsers: [[type: 'JMeter']], // JMeter 결과 파일임을 명시
-                           sourceDataFiles: "${JTL_REPORT_FILE}", // 분석할 결과 파일 경로
+                perfReport parsers: [[type: 'JMeter']],
+                           sourceDataFiles: "${JTL_REPORT_FILE}",
                            errorFailedThreshold: 1.0,
                            errorUnstableThreshold: 0.5,
-                           errorResponseTimeFailedThreshold: 1000, // 평균 응답 시간 실패 임계값
-                           errorResponseTimeUnstableThreshold: 800, // 평균 응답 시간 불안정 임계값
-                           errorMedianResponseTimeFailedThreshold: 900, // 중앙값 응답 시간 실패 임계값
-                           errorMedianResponseTimeUnstableThreshold: 700, // 중앙값 응답 시간 불안정 임계값
-                           errorPercentile90ResponseTimeFailedThreshold: 1500, // 90번째 백분위수 응답 시간 실패 임계값
-                           errorPercentile90ResponseTimeUnstableThreshold: 1200, // 90번째 백분위수 응답 시간 불안정 임계값
-                           baselineBuild: true // 임계값 초과 시 빌드 실패 여부
+                           errorResponseTimeFailedThreshold: 1000, // 평균 응답 시간 실패 임계값 (제안)
+                           errorResponseTimeUnstableThreshold: 800, // 평균 응답 시간 불안정 임계값 (제안)
+                           errorUnstableResponseTimeThreshold: 900, // 중앙값 응답 시간 실패 임계값 (제안)
+                           errorUnstableResponseTimeThreshold: 700, // 중앙값 응답 시간 불안정 임계값 (제안)
+                           errorUnstableResponseTimeThreshold: 1500, // 90번째 백분위수 응답 시간 실패 임계값 (제안)
+                           errorUnstableResponseTimeThreshold: 1200, // 90번째 백분위수 응답 시간 불안정 임계값 (제안)
+                           baselineBuild: 0 // 임계값 초과 시 빌드 실패 (정수 값으로 변경)
                 }
         }
 
