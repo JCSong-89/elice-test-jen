@@ -31,7 +31,7 @@ pipeline {
 
         stage('Publish Performance Report') {
             steps {
-                perfReport parsers: [[type: 'JMeter']],
+                perfReport(
                            sourceDataFiles: "${JTL_REPORT_FILE}",
                            errorFailedThreshold: 1.0,
                            errorUnstableThreshold: 0.5,
@@ -42,6 +42,7 @@ pipeline {
                            percentile90ResponseTimeFailedThreshold: 1500,
                            percentile90ResponseTimeUnstableThreshold: 1200,
                            failBuild: true
+                    )
                 }
             }
         
