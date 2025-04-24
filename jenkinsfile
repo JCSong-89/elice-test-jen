@@ -18,7 +18,7 @@ pipeline {
                     sh "rm -rf ${env.JMETER_HOME}/results" 
                     sh "rm -rf ${HTML_REPORT_DIR}"         
                     sh "mkdir ${env.JMETER_HOME}/results" 
-                    sh "mkdir ${HTML_REPORT_DIR}"         
+                    sh "mkdir -p ${HTML_REPORT_DIR}"         
                     sh """
                         echo "시작"
                         ${env.JMETER_HOME}/bin/jmeter -n \\
