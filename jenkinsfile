@@ -27,7 +27,7 @@ pipeline{
             ${env.JMETER_HOME}/bin/jmeter -n \\
             -t MyTestPlan.jmx \\
             -l ./results/results.jtl \\ 
-             -e -o ./results/report_output        
+            -e -o ./results/report_output        
           """
         }
       }
