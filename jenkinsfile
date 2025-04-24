@@ -7,15 +7,6 @@ pipeline {
     }
 
     stages {
-        stage('Clone Repository') {
-            steps {
-              sh'''
-                git 'https://github.com/JCSong-89/elice-test-jen.git'
-              '''
-            }
-            
-        }
-
         stage('Run Tests') {
             steps {
                 script{
