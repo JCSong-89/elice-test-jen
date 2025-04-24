@@ -15,7 +15,8 @@ pipeline {
         stage('Run Tests') {
             steps {
                 script{       
-                    sh "mkdir ${env.JMETER_HOME}/results"          
+                    sh "mkdir ${env.JMETER_HOME}/results" 
+                    sh "mkdir ${HTML_REPORT_DIR}"         
                     sh """
                         echo "시작"
                         ${env.JMETER_HOME}/bin/jmeter -n \\
