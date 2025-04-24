@@ -29,9 +29,9 @@ pipeline {
                           -t MyTestPlan.jmx \\
                           -l ${env.JMETER_HOME}/results/results.jtl \\
                           -e -o ${env.JMETER_HOME}/results/report_output \\
-                          -Djmeter.reportgenerator.apdex_satisfied=${env.APDEX_SATISFIED_THRESHOLD} \\  // APDEX 만족 임계값 설정
+                          -Djmeter.reportgenerator.apdex_satisfied=${env.APDEX_SATISFIED_THRESHOLD} \\  
                           -Djmeter.reportgenerator.apdex_tolerated=${env.APDEX_TOLERATED_THRESHOLD}  \\ 
-                          -L INFO  // JMeter 로그 레벨 설정 (필요한 경우 DEBUG로 변경) // APDEX 허용 임계값 설정
+                          -L INFO
                     """
 
                     sh "cp ${env.JMETER_HOME}/results/results.jtl ${env.WORKSPACE}/results/results.jtl"                }
