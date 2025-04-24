@@ -10,8 +10,8 @@ pipeline {
 
         WORKSPACE = "/var/jenkins_home/workspace/sds"
 
-        APDEX_SATISFIED_THRESHOLD = 500  // 예시: 만족 임계값 500ms
-        APDEX_TOLERATED_THRESHOLD = 1500 // 예시: 허용 임계값 1500ms
+        APDEX_SATISFIED_THRESHOLD = "500"  // 예시: 만족 임계값 500ms
+        APDEX_TOLERATED_THRESHOLD = "1500" // 예시: 허용 임계값 1500ms
     }
 
     stages {
