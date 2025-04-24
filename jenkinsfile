@@ -35,16 +35,16 @@ pipeline {
                            sourceDataFiles: "${JTL_REPORT_FILE}",
                            errorFailedThreshold: 1.0,
                            errorUnstableThreshold: 0.5,
-                           averageResponseTimeFailedThreshold: 1000, // 오류 메시지 기반 유지
-                           averageResponseTimeUnstableThreshold: 800, // 오류 메시지 기반 유지
-                           medianResponseTimeFailedThreshold: 900, // 오류 메시지 기반 유지
-                           medianResponseTimeUnstableThreshold: 700, // 오류 메시지 기반 유지
-                           percentile90ResponseTimeFailedThreshold: 1500, // 오류 메시지 기반 유지
-                           percentile90ResponseTimeUnstableThreshold: 1200, // 오류 메시지 기반 유지
-                           failBuild: true // 오류 메시지 기반 유지
+                           averageResponseTimeFailedThreshold: 1000,
+                           averageResponseTimeUnstableThreshold: 800,
+                           medianResponseTimeFailedThreshold: 900,
+                           medianResponseTimeUnstableThreshold: 700,
+                           percentile90ResponseTimeFailedThreshold: 1500,
+                           percentile90ResponseTimeUnstableThreshold: 1200,
+                           failBuild: true
                 }
             }
-        }
+        
 
         stage('Publish HTML Report') {
             steps {
@@ -58,7 +58,8 @@ pipeline {
                 )
             }
         }
-    
+    }
+
     post {
         always {
             echo 'Build finished.'
