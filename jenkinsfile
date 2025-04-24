@@ -63,7 +63,7 @@ pipeline {
     post {
         always {
             echo 'Build finished.'
-            archiveArtifacts artifacts: "${env.HTML_REPORT_DIR}/**/*", allowEmptyArchive: true
+            archiveArtifacts artifacts: "${env.JMETER_HOME}/results/report_output", allowEmptyArchive: true
         }
     }
 }
