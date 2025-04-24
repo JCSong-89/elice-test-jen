@@ -19,8 +19,8 @@ pipeline {
                         echo "시작"
                         ${env.JMETER_HOME}/bin/jmeter -n \\
                           -t MyTestPlan.jmx \\
-                          -l ./results/results.jtl \\
-                          -e -o ./results/report_output
+                          -l ${env.JMETER_HOME}/results/results.jtl \\
+                          -e -o ${env.JMETER_HOME}/results/report_output
                     """
                 }
             }
