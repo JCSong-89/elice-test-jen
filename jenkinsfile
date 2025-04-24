@@ -16,8 +16,6 @@ pipeline {
             steps {
                 script{                    
                     sh 'pwd'
-                    sh 'cd /opt/jmeter/apache-jmeter-5.6.3/bin'
-
                     sh 'rm -f results.jtl'
                     sh 'rm -rf report_output' // reports -> report_output으로 수정 (로그 참조)
                     sh 'mkdir -p results'       // 결과 파일 저장 디렉토리 생성
