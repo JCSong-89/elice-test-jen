@@ -28,10 +28,7 @@ pipeline {
                         ${env.JMETER_HOME}/bin/jmeter -n \\
                           -t MyTestPlan.jmx \\
                           -l ${env.JMETER_HOME}/results/results.jtl \\
-                          -e -o ${env.JMETER_HOME}/results/report_output \\
-                          -Djmeter.reportgenerator.apdex_satisfied=${env.APDEX_SATISFIED_THRESHOLD} \\  
-                          -Djmeter.reportgenerator.apdex_tolerated=${env.APDEX_TOLERATED_THRESHOLD}  \\ 
-                          -L INFO
+                          -e -o ${env.JMETER_HOME}/results/report_output
                     """
 
                     sh "cp ${env.JMETER_HOME}/results/results.jtl ${env.WORKSPACE}/results/results.jtl"                }
@@ -55,7 +52,7 @@ pipeline {
                     allowMissing: false,
                     alwaysLinkToLastBuild: false,
                     keepAll: false,
-                    reportDir: "${env.JMETER_HOME}/${env.HTML_REPORT_DIR}",
+                    reportDir: "${env.JMETER_HOME}/results",
                     reportFiles: 'index.html',
                     reportName: 'JMeter Performance Report'
                 )
