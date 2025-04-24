@@ -31,23 +31,28 @@ pipeline {
 
         stage('Performance Report') {
             steps {
-                performancePublisher(
-                    errorFailedThresholds: [0.0], // 에러율 실패 임계값 (0%)
-                    errorUnstableThresholds: [5.0], // 에러율 불안정 임계값 (5%)
-                    sourceDataFiles: "${JTL_REPORT_FILE}", // 분석할 결과 파일 경로
-                    reportDir: "${PERFORMANCE_REPORT_DIR}" // 생성될 보고서 디렉토리
-                )
+               perfReport sources: "${JTL_REPORT_FILE}",
+                           errorFailedThreshold: 1.0,
+                           errorUnstableThreshold: 0.5,
+                           averageFailedThreshold: 1000,
+                           averageUnstableThreshold: 800,
+                           medianFailedThreshold: 900,
+                           medianUnstableThreshold: 700,
+                           percentile90FailedThreshold: 1500,
+                           percentile90UnstableThreshold: 1200,
+                           failBuild: true
             }
         }
+
         stage('Publish HTML Report') {
             steps {
                 publishHTML(
                     allowMissing: false,
                     alwaysLinkToLastBuild: false,
                     keepAll: false,
-                    reportDir: "${HTML_REPORT_DIR}", // HTML 보고서 디렉토리 지정
-                    reportFiles: 'index.html',       // 표시할 HTML 파일 이름
-                    reportName: 'JMeter Performance Report' // 링크 이름
+                    reportDir: "${HTML_REPORT_DIR}",
+                    reportFiles: 'index.html',
+                    reportName: 'JMeter Performance Report'
                 )
             }
         }
