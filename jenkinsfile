@@ -29,21 +29,22 @@ pipeline {
             }
         }
 
-        stage('Performance Report') {
+        stage('Publish Performance Report') {
             steps {
-               perfReport sources: "${JTL_REPORT_FILE}",
+                perfReport parsers: [[type: 'JMeter']], // JMeter 결과 파일임을 명시
+                           sourceDataFiles: "${JTL_REPORT_FILE}", // 분석할 결과 파일 경로
                            errorFailedThreshold: 1.0,
                            errorUnstableThreshold: 0.5,
-                           averageFailedThreshold: 1000,
-                           averageUnstableThreshold: 800,
-                           medianFailedThreshold: 900,
-                           medianUnstableThreshold: 700,
-                           percentile90FailedThreshold: 1500,
-                           percentile90UnstableThreshold: 1200,
+                           averageResponseTimeFailedThreshold: 1000,
+                           averageResponseTimeUnstableThreshold: 800,
+                           medianResponseTimeFailedThreshold: 900,
+                           medianResponseTimeUnstableThreshold: 700,
+                           percentile90ResponseTimeFailedThreshold: 1500,
+                           percentile90ResponseTimeUnstableThreshold: 1200,
                            failBuild: true
             }
         }
-
+        
         stage('Publish HTML Report') {
             steps {
                 publishHTML(
