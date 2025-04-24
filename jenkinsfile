@@ -10,7 +10,7 @@ pipeline {
         stage('Clone Repository') {
             steps {
               sh'''
-                git 'https://github.com/JCSong-89/0319TeamRepo.git/'
+                git 'https://github.com/JCSong-89/elice-test-jen.git'
               '''
             }
             
