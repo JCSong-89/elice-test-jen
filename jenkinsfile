@@ -4,6 +4,9 @@ pipeline {
     environment {
         JMETER_VERSION = "5.6.3"
         JMETER_HOME = "/opt/jmeter/apache-jmeter-${JMETER_VERSION}"
+        JTL_REPORT_FILE = 'results/results.jtl' // 성능 플러그인이 분석할 결과 파일 경로
+        PERFORMANCE_REPORT_DIR = 'performance-report' // 성능 보고서가 생성될 디렉토리
+        HTML_REPORT_DIR = 'report_output' // JMeter HTML 보고서 디렉토리
     }
 
     stages {
@@ -25,13 +28,35 @@ pipeline {
                 }
             }
         }
+
+        stage('Performance Report') {
+            steps {
+                performancePublisher(
+                    errorFailedThresholds: [percentage(0.0)], // 에러율 실패 임계값 (0%)
+                    errorUnstableThresholds: [percentage(5.0)], // 에러율 불안정 임계값 (5%)
+                    sourceDataFiles: "${JTL_REPORT_FILE}", // 분석할 결과 파일 경로
+                    reportDir: "${PERFORMANCE_REPORT_DIR}" // 생성될 보고서 디렉토리
+                )
+            }
+        }
+        stage('Publish HTML Report') {
+            steps {
+                publishHTML(
+                    allowMissing: false,
+                    alwaysLinkToLastBuild: false,
+                    keepAll: false,
+                    reportDir: "${HTML_REPORT_DIR}", // HTML 보고서 디렉토리 지정
+                    reportFiles: 'index.html',       // 표시할 HTML 파일 이름
+                    reportName: 'JMeter Performance Report' // 링크 이름
+                )
+            }
+        }
     }
 
     post {
         always {
-          sh'''
             echo 'Build finished.'
-            '''
+            archiveArtifacts artifacts: "${HTML_REPORT_DIR}/**/*", allowEmptyArchive: true
         }
     }
 }
