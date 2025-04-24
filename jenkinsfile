@@ -1,0 +1,44 @@
+pipeline {
+    agent any
+
+    environment {
+        JMETER_VERSION = 5.5
+        JMETER_HOME = "/opt/jmeter/apache-jmeter-${JMETER_VERSION}"
+    }
+
+    stages {
+        stage('Clone Repository') {
+            steps {
+              sh'''
+                git 'https://github.com/JCSong-89/0319TeamRepo.git/'
+              '''
+            }
+            
+        }
+
+        stage('Run Tests') {
+            steps {
+                script{
+                    sh 'rm -f results.jtl'
+                    sh 'rm -rf reports'
+
+                    sh """
+                        echo "시작"
+                        ${env.JMETER_HOME}/bin/jmeter -n \\
+                            -t -n -t MyTestPlan.jmx \\
+                            -l .\results\results.jtl \\
+                            -e -o .\results\report_output
+                    """
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+          sh'''
+            echo 'Build finished.'
+            '''
+        }
+    }
+}
