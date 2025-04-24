@@ -12,11 +12,6 @@ pipeline {
     }
 
     stages {
-        stage('Clean Workspace') {
-           steps {
-                deleteDir()
-                }
-        }
         stage('Run Tests') {
             steps {
                 script{                    
