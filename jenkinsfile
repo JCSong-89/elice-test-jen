@@ -31,7 +31,7 @@ pipeline {
         stage('Publish Performance Report') {
             steps {
                 perfReport(
-                           sourceDataFiles: "${env.JTL_REPORT_FILE}",
+                           sourceDataFiles: "${env.JMETER_HOME}/${env.JTL_REPORT_FILE}",
                            errorFailedThreshold: 1.0,
                            errorUnstableThreshold: 0.5
                     )
@@ -45,7 +45,7 @@ pipeline {
                     allowMissing: false,
                     alwaysLinkToLastBuild: false,
                     keepAll: false,
-                    reportDir: "${env.HTML_REPORT_DIR}",
+                    reportDir: "${env.JMETER_HOME}/${env.HTML_REPORT_DIR}",
                     reportFiles: 'index.html',
                     reportName: 'JMeter Performance Report'
                 )
