@@ -35,16 +35,16 @@ pipeline {
                            sourceDataFiles: "${JTL_REPORT_FILE}", // 분석할 결과 파일 경로
                            errorFailedThreshold: 1.0,
                            errorUnstableThreshold: 0.5,
-                           averageResponseTimeFailedThreshold: 1000,
-                           averageResponseTimeUnstableThreshold: 800,
-                           medianResponseTimeFailedThreshold: 900,
-                           medianResponseTimeUnstableThreshold: 700,
-                           percentile90ResponseTimeFailedThreshold: 1500,
-                           percentile90ResponseTimeUnstableThreshold: 1200,
-                           failBuild: true
-            }
+                           errorResponseTimeFailedThreshold: 1000, // 평균 응답 시간 실패 임계값
+                           errorResponseTimeUnstableThreshold: 800, // 평균 응답 시간 불안정 임계값
+                           errorMedianResponseTimeFailedThreshold: 900, // 중앙값 응답 시간 실패 임계값
+                           errorMedianResponseTimeUnstableThreshold: 700, // 중앙값 응답 시간 불안정 임계값
+                           errorPercentile90ResponseTimeFailedThreshold: 1500, // 90번째 백분위수 응답 시간 실패 임계값
+                           errorPercentile90ResponseTimeUnstableThreshold: 1200, // 90번째 백분위수 응답 시간 불안정 임계값
+                           baselineBuild: true // 임계값 초과 시 빌드 실패 여부
+                }
         }
-        
+
         stage('Publish HTML Report') {
             steps {
                 publishHTML(
