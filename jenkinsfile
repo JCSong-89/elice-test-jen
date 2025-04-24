@@ -22,9 +22,9 @@ pipeline {
                     sh """
                         echo "시작"
                         ${env.JMETER_HOME}/bin/jmeter -n \\
-                          -t ${env.JMETER_HOME}/bin/MyTestPlan.jmx \\
-                          -l .\results\results.jtl \\
-                          -e -o .\results\report_output
+                          -t MyTestPlan.jmx \\
+                          -l ./results/results.jtl \\
+                          -e -o ./results/report_output
                     """
                 }
             }
