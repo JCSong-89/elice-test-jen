@@ -33,7 +33,7 @@ pipeline {
         stage('Publish Performance Report') {
             steps {
                 perfReport(
-                           source: "${env.JMETER_HOME}/${env.JTL_REPORT_FILE}",
+                           sources: "${env.JMETER_HOME}/${env.JTL_REPORT_FILE}",
                            errorFailedThreshold: 1.0,
                            errorUnstableThreshold: 0.5
                     )
