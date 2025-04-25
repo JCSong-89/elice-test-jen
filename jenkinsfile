@@ -50,7 +50,7 @@ pipeline {
     post {
         always {
             echo 'Build finished.'
-            archiveArtifacts artifacts: "sds/results/report_output", allowEmptyArchive: true
+            archiveArtifacts artifacts: "results/report_output", allowEmptyArchive: true
         }
     }
 }
