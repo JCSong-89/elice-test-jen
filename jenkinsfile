@@ -54,7 +54,7 @@ pipeline {
                      allowMissing: false,
                      alwaysLinkToLastBuild: false,
                      keepAll: false,
-                     reportDir: "results/**",
+                     reportDir: "results/report_output",
                      reportFiles: 'index.html',
                      reportName: 'JMeter Performance Report'
                     )
