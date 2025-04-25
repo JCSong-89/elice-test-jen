@@ -31,7 +31,10 @@ pipeline {
                           -e -o ${env.JMETER_HOME}/results/report_output
                     """
 
-                    sh "cp ${env.JMETER_HOME}/results/results.jtl ${env.WORKSPACE}/results/results.jtl"                }
+                    sh "cp ${env.JMETER_HOME}/results/results.jtl ${env.WORKSPACE}/results/results.jtl"                
+                    sh "cp ${env.JMETER_HOME}/results/report_output ${env.WORKSPACE}/results/report_output"                
+
+                    }
             }
         }
 
