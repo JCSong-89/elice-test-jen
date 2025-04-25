@@ -53,6 +53,7 @@ pipeline {
     post {
         always {
             echo 'Build finished.'
+            sh 'ls -R results'
             archiveArtifacts artifacts: "results/report_output", allowEmptyArchive: true
         }
     }
