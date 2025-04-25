@@ -32,7 +32,7 @@ pipeline {
                     """
 
                     sh "cp ${env.JMETER_HOME}/results/results.jtl ${env.WORKSPACE}/results/results.jtl"                
-                    sh "cp -r ${env.JMETER_HOME}/results/report_output ${env.WORKSPACE}/results/report_output"                
+                    sh "cp -r ${env.JMETER_HOME}/results ${env.WORKSPACE}/results"                
 
                     }
             }
