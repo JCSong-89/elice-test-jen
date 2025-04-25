@@ -55,7 +55,7 @@ pipeline {
                      alwaysLinkToLastBuild: false,
                      keepAll: false,
                      reportDir: "results/report_output",
-                     reportFiles: 'results/report_output/**',
+                     //reportFiles: '',
                      reportName: 'JMeter Performance Report'
                     )
                 }
