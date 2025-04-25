@@ -44,26 +44,13 @@ pipeline {
                     )
                 }
             }
-        
-
-        stage('Publish HTML Report') {
-            steps {
-                publishHTML(
-                    allowMissing: false,
-                    alwaysLinkToLastBuild: false,
-                    keepAll: false,
-                    reportDir: "${env.JMETER_HOME}/results/report_output",
-                    reportFiles: 'index.html',
-                    reportName: 'JMeter Performance Report'
-                )
-            }
-        }
+    
     }
 
     post {
         always {
             echo 'Build finished.'
-            archiveArtifacts artifacts: "${env.JMETER_HOME}/results/report_output", allowEmptyArchive: true
+            archiveArtifacts artifacts: "results/report_output", allowEmptyArchive: true
         }
     }
 }
