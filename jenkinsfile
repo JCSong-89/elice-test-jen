@@ -32,7 +32,7 @@ pipeline {
                     """
 
                     sh "cp ${env.JMETER_HOME}/results/results.jtl ${env.WORKSPACE}/results/results.jtl"                
-                    sh 'cp -r /opt/jmeter/apache-jmeter-5.6.3/results/report_output/* results/'
+                    sh 'cp -r /opt/jmeter/apache-jmeter-5.6.3/results/report_output results/'
 
                     }
             }
